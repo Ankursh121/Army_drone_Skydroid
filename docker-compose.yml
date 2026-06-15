@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # RTSP Stream server for relaying drone camera feeds
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: mediamtx
+    ports:
+      - "8554:8554" # RTSP
+      - "1935:1935" # RTMP
+      - "8888:8888" # HLS
+      - "8889:8889" # WebRTC
+    restart: unless-stopped
+
+  # Real-time YOLO detection engine service
+  detection-engine:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    container_name: detection-engine
+    depends_on:
+      - mediamtx
+    environment:
+      - VIDEO_SOURCE=rtsp://mediamtx:8554/drone
+      - MODEL_PATH=/app/models/best.pt
+      - UDP_IP=127.0.0.1
+      - UDP_PORT=5005
+    network_mode: host
+    restart: unless-stopped
