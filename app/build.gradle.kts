@@ -49,6 +49,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    aaptOptions {
+        noCompress("onnx", "ort")
+    }
 }
 
 dependencies {
@@ -85,6 +88,9 @@ dependencies {
 
     // Preferences DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // ONNX Runtime Mobile for local AI inference
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.17.0")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

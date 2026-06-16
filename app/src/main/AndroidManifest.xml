@@ -12,9 +12,9 @@
     <application
         android:name=".GcsApplication"
         android:allowBackup="true"
-        android:icon="@android:mipmap/sym_def_app_icon"
-        android:label="Ladakh Drone GCS"
-        android:roundIcon="@android:mipmap/sym_def_app_icon"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Yudru"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
         android:usesCleartextTraffic="true"> <!-- Needed if connecting to UDP/HTTP feeds locally -->
